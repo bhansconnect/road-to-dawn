@@ -24,6 +24,11 @@ If I want the system to vaguely be usable, more accurately, 100+ MHz would be pr
 If these are not properly synced, it could cause incorrect instructions to be run.
 I will probably just start with a single L1 cache (maybe with multiple ports?).
 Though for performance it like will need to be split with a proper cache coherence algorithm implemented.
+  - Actually, this specific bullet point may not be that bad. The only caches that needs coherence are the tiny L1 caches.
+    This does not even have to be synced between cpus except when one is turned on or off (can probably just flush the toggling CPU and toggled CPU).
+    Since the L1 cache will be super small with metadata likely store in registers, it should be easy to have many metadata ports for syncing.
+    It is also within the cpu and before any memory busses, so it should have a lot less data to pipe around and configure.
+    I feel like that shouldn't be too bad.
 
 
 This will definitely not be an easy project especially because I want to make all of the RTL.
