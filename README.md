@@ -20,6 +20,10 @@ This is an easy way to keep a cpu constantly stalled. This makes prefetching and
 1. The minimum frequency to even really get a boot is about 20 MHz. A lot of cheap fpgas can run at 100 MHz, but with any reasonble amount of logic will run at 20-50 MHz.
 If I want the system to vaguely be usable, more accurately, 100+ MHz would be preferred. So tight timing considerations are definitely needed.
 
+1. As an extra fun note, it looks like Dawn OS uses self modifying code. As such, the icache and dcache need to be in sync.
+If these are not properly synced, it could cause incorrect instructions to be run.
+I will probably just start with a single L1 cache (maybe with multiple ports?).
+Though for performance it like will need to be split with a proper cache coherence algorithm implemented.
 
 
 This will definitely not be an easy project especially because I want to make all of the RTL.
